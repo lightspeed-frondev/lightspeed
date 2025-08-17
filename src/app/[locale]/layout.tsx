@@ -58,14 +58,14 @@ export default async function LocaleLayout(
   return (
     <div className="min-h-dvh flex flex-col">
       <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-background/70 border-b border-black/10 dark:border-white/10">
-        <div className="mx-auto max-w-6xl pl-4 pr-2 md:px-4 py-3 grid grid-cols-3 items-center">
+        <div className="mx-auto max-w-6xl pl-4 pr-2 md:px-4 py-3 grid grid-cols-3 items-center overflow-x-hidden">
           <Link href={`/${locale}`} className="justify-self-start flex items-center">
             <Image
               src="/logo.png"
               alt="Light-Speed Transport GmbH"
               width={180}
               height={72}
-              className="h-12 w-auto md:h-12"
+              className="w-[140px] h-auto md:w-[180px]"
               priority
             />
             <span className="sr-only">Light-Speed Transport GmbH</span>
@@ -76,7 +76,7 @@ export default async function LocaleLayout(
             <a href={`/${locale}#faq`} className="hover:opacity-80">{labels.faq}</a>
             <a href={`/${locale}/contact`} className="hover:opacity-80">{labels.contact}</a>
           </nav>
-          <div className="justify-self-end flex items-center gap-2 col-start-3 md:col-start-auto">
+          <div className="justify-self-end flex items-center gap-2 col-start-3 md:col-start-auto overflow-x-hidden">
             <div className="hidden md:block">
               <LanguageSwitcher current={locale} />
             </div>

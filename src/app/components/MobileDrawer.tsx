@@ -21,7 +21,7 @@ export default function MobileDrawer({ locale, labels }: Props) {
   const locales = ["de", "en", "fr"] as const;
 
   return (
-    <div className="md:hidden w-full flex justify-end">
+    <div className="md:hidden w-full flex justify-end overflow-x-hidden">
       <button
         aria-label="Open menu"
         aria-expanded={open}
