@@ -77,7 +77,7 @@ export default function MobileDrawer({ locale, labels }: Props) {
         </nav>
 
         <div className="mt-auto px-4 py-4 border-t border-black/10 dark:border-white/10">
-          <div className="flex items-center gap-1 rounded-full border border-black/10 dark:border-white/10 bg-background/60 backdrop-blur px-1 py-1">
+          <div className="inline-flex w-fit items-center gap-1 rounded-full border border-black/10 dark:border-white/10 bg-background/60 backdrop-blur px-1 py-1">
             {locales.map((l) => (
               <Link
                 key={l}

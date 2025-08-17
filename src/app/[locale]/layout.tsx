@@ -56,7 +56,7 @@ export default async function LocaleLayout(
   return (
     <div className="min-h-dvh flex flex-col">
       <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-background/70 border-b border-black/10 dark:border-white/10">
-        <div className="mx-auto max-w-6xl px-4 py-3 grid grid-cols-3 items-center">
+        <div className="mx-auto max-w-6xl pl-4 pr-2 md:px-4 py-3 grid grid-cols-3 items-center">
           <Link href={`/${locale}`} className="font-semibold tracking-tight justify-self-start">
             Light-Speed Transport GmbH
           </Link>
@@ -66,7 +66,7 @@ export default async function LocaleLayout(
             <a href={`/${locale}#faq`} className="hover:opacity-80">{labels.faq}</a>
             <a href={`/${locale}/contact`} className="hover:opacity-80">{labels.contact}</a>
           </nav>
-          <div className="justify-self-end flex items-center gap-2">
+          <div className="justify-self-end flex items-center gap-2 col-start-3 md:col-start-auto">
             <div className="hidden md:block">
               <LanguageSwitcher current={locale} />
             </div>
@@ -82,7 +82,7 @@ export default async function LocaleLayout(
       <footer className="border-t border-black/10 dark:border-white/10">
         <div className="mx-auto max-w-6xl px-4 py-8 text-sm flex flex-col md:flex-row items-center md:items-center md:justify-between gap-4">
           <p className="opacity-80 text-center md:text-left">© {new Date().getFullYear()} Light-Speed Transport GmbH</p>
-          <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4">
+          <div className="w-full md:w-auto flex flex-wrap items-center justify-center md:justify-end gap-x-4 gap-y-2">
             <a href={`/${locale}/services`} className="hover:opacity-80">{navLabels[locale]?.services ?? "Services"}</a>
             <a href={`/${locale}/about`} className="hover:opacity-80">{navLabels[locale]?.about ?? "About"}</a>
             <a href={`/${locale}/contact`} className="hover:opacity-80">{navLabels[locale]?.contact ?? "Contact"}</a>
