@@ -11,6 +11,7 @@ type Messages = {
   ctaPrimary: string;
   aboutTitle: string;
   aboutBody: string;
+  aboutBody2: string;
   servicesTitle: string;
   services: string[];
   faqTitle: string;
@@ -28,6 +29,8 @@ const messagesByLocale: Record<string, Messages> = {
     aboutTitle: "Über uns",
     aboutBody:
       "Light-Speed Transport GmbH bietet umfassende Lösungen in Transport, Logistik und Immobilien. Mit einem erfahrenen Team liefern wir pünktlich und zuverlässig und begleiten Sie professionell bei Immobilientransaktionen.",
+    aboutBody2:
+      "Durch die enge Zusammenarbeit mit verlässlichen Partnern, einer modernen Flotte und digitalen Prozessen schaffen wir Transparenz und Tempo – vom ersten Angebot bis zur erfolgreichen Abwicklung.",
     servicesTitle: "Leistungen",
     services: [
       "Wir übernehmen Transporte aller Art – national wie international – pünktlich, sicher und zuverlässig.",
@@ -67,6 +70,8 @@ const messagesByLocale: Record<string, Messages> = {
     aboutTitle: "About Us",
     aboutBody:
       "Light-Speed Transport GmbH delivers comprehensive solutions in transport, logistics and real estate. With an experienced team, we deliver on time and guide you through real estate transactions.",
+    aboutBody2:
+      "By combining a trusted partner network, a modern fleet and digital workflows, we provide transparency and speed – from the first quote to successful completion.",
     servicesTitle: "Services",
     services: [
       "We handle all types of transport – domestic and international – with on‑time, safe and reliable delivery.",
@@ -106,6 +111,8 @@ const messagesByLocale: Record<string, Messages> = {
     aboutTitle: "À propos",
     aboutBody:
       "Light-Speed Transport GmbH propose des solutions complètes en transport, logistique et immobilier. Notre équipe expérimentée livre à temps et vous accompagne dans vos transactions immobilières.",
+    aboutBody2:
+      "En combinant un réseau de partenaires fiable, une flotte moderne et des processus numériques, nous apportons transparence et rapidité – du premier devis jusqu’à la réalisation.",
     servicesTitle: "Services",
     services: [
       "Nous prenons en charge tous types de transports – en national comme à l’international – avec des livraisons ponctuelles et fiables.",
@@ -173,7 +180,21 @@ export default function Page(props: { params: Promise<{ locale: string }> }) {
     }
   };
 
-  const aboutImages = ["trans.jpg", "estate.webp", "car.jpg", "clean.jpg"];
+  const aboutImages = ["service1.jpg", "service2.jpg", "service3.jpg", "service4.jpg"];
+
+  const servicesCtaLabel =
+    locale === "fr"
+      ? "Voir tous les services"
+      : locale === "en"
+      ? "View all services"
+      : "Alle Leistungen ansehen";
+
+  const aboutCtaLabel =
+    locale === "fr"
+      ? "À propos"
+      : locale === "en"
+      ? "About us"
+      : "Mehr über uns";
 
   return (
     <div>
@@ -220,6 +241,18 @@ export default function Page(props: { params: Promise<{ locale: string }> }) {
             <p ref={setRevealRef as any} className="reveal mt-4 opacity-80 leading-relaxed">
               {t.aboutBody}
             </p>
+            <p ref={setRevealRef as any} className="reveal mt-12 opacity-80 leading-relaxed">
+              {t.aboutBody2}
+            </p>
+            <div className="mt-6">
+              <a
+                ref={setRevealRef as any}
+                href={`/${locale}/about`}
+                className="reveal inline-flex items-center rounded-md bg-black text-white dark:bg-white dark:text-black px-5 py-2.5 hover:opacity-90"
+              >
+                {aboutCtaLabel}
+              </a>
+            </div>
           </div>
           <div className="grid grid-cols-2 gap-3 md:gap-4">
             {aboutImages.map((src, idx) => (
@@ -257,13 +290,22 @@ export default function Page(props: { params: Promise<{ locale: string }> }) {
                     t.services.length === 5 && idx === 3 ? "lg:col-start-2" : ""
                   }`}
                 >
-                  <div className="h-10 w-10 rounded-md bg-gradient-to-br from-sky-500 to-fuchsia-500 opacity-90 grid place-items-center">
+                  <div className="h-10 w-10 rounded-md bg-black grid place-items-center">
                     <Icon className="h-5 w-5 text-white drop-shadow" />
                   </div>
                   <p className="mt-4 font-medium line-clamp-2">{s}</p>
                 </div>
               );
             })}
+          </div>
+          <div className="mt-8 flex justify-center">
+            <a
+              ref={setRevealRef as any}
+              href={`/${locale}/services`}
+              className="reveal inline-flex items-center rounded-md bg-black text-white dark:bg-white dark:text-black px-5 py-2.5 hover:opacity-90"
+            >
+              {servicesCtaLabel}
+            </a>
           </div>
         </div>
       </section>

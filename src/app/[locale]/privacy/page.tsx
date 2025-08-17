@@ -61,7 +61,12 @@ export default async function PrivacyPage(props: { params: Promise<{ locale: str
           "Beschwerderecht bei einer Aufsichtsbehörde",
         ],
     contactTitle: locale === "fr" ? "Contact" : locale === "en" ? "Contact" : "Kontakt",
-    contactText: locale === "fr" ? "E‑mail: privacy@lightspeed-transport.example" : locale === "en" ? "Email: privacy@lightspeed-transport.example" : "E‑Mail: privacy@lightspeed-transport.example",
+    contactText:
+      locale === "fr"
+        ? "E‑mail: info@lightspeedtransport.ch"
+        : locale === "en"
+        ? "Email: info@lightspeedtransport.ch"
+        : "E‑Mail: info@lightspeedtransport.ch",
   } as const;
 
   return (

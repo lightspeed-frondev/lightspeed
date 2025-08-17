@@ -37,12 +37,10 @@ export default async function ContactPage(props: { params: Promise<{ locale: str
       ? "General Information"
       : "Allgemeine Informationen";
   const addressLabel = locale === "fr" ? "Adresse" : locale === "en" ? "Address" : "Adresse";
-  const phoneLabel = locale === "fr" ? "Téléphone" : locale === "en" ? "Phone" : "Telefon";
   const emailLabelInfo = locale === "fr" ? "E-mail" : locale === "en" ? "Email" : "E-Mail";
   const companyName = "Light-Speed Transport GmbH";
   const countryLocalized = locale === "fr" ? "Suisse" : locale === "en" ? "Switzerland" : "Schweiz";
   const companyAddress = `e/o TFZ GmbH, Am Kägenrain 3, 4153 Reinach BL, ${countryLocalized}`;
-  const companyPhone = "+41 61 000 00 00";
   const companyEmail = "info@lightspeedtransport.ch";
 
   return (
@@ -65,14 +63,7 @@ export default async function ContactPage(props: { params: Promise<{ locale: str
                 <div className="opacity-60">{addressLabel}</div>
                 <div>{companyAddress}</div>
               </div>
-              <div>
-                <div className="opacity-60">{phoneLabel}</div>
-                <div>
-                  <a href={`tel:${companyPhone.replace(/\s|\(|\)|-/g, "")}`} className="underline underline-offset-4 hover:opacity-80">
-                    {companyPhone}
-                  </a>
-                </div>
-              </div>
+              
               <div>
                 <div className="opacity-60">{emailLabelInfo}</div>
                 <div>
