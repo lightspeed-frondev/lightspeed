@@ -14,21 +14,42 @@ export async function POST(request: Request) {
     const user = process.env.SMTP_USER || "info@lightspeedtransport.ch";
     const pass = process.env.SMTP_PASS || "";
 
-    if (!pass) {
-      return NextResponse.json({ ok: false, error: "Server email not configured" }, { status: 500 });
+    // Eksik ortam değişkeni kontrolü
+    const missing: string[] = [];
+    if (!host) missing.push("SMTP_HOST");
+    if (!port) missing.push("SMTP_PORT");
+    if (!user) missing.push("SMTP_USER");
+    if (!pass) missing.push("SMTP_PASS");
+    if (missing.length) {
+      return NextResponse.json(
+        { ok: false, error: `Missing env: ${missing.join(", ")}` },
+        { status: 500 }
+      );
     }
 
     const transporter = nodemailer.createTransport({
       host,
       port,
       secure: port === 465,
+      requireTLS: port === 587,
       auth: { user, pass },
     });
 
     const toAddress = "info@lightspeedtransport.ch";
 
+    // Bağlantıyı doğrula (hata mesajını erken yakalamak için)
+    try {
+      await transporter.verify();
+    } catch (err: any) {
+      console.error("SMTP verify failed", err);
+      return NextResponse.json(
+        { ok: false, error: `SMTP verify failed: ${err?.message || "unknown"}` },
+        { status: 500 }
+      );
+    }
+
     await transporter.sendMail({
-      from: user,
+      from: `Website Contact <${user}>`,
       to: toAddress,
       replyTo: email,
       subject: `New contact from ${name}`,
@@ -41,7 +62,9 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true });
   } catch (error) {
-    return NextResponse.json({ ok: false, error: "Internal error" }, { status: 500 });
+    console.error("/api/contact error", error);
+    const err = error as any;
+    return NextResponse.json({ ok: false, error: err?.message || "Internal error" }, { status: 500 });
   }
 }
 
