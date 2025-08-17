@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, use, useState } from "react";
+import { useEffect, useRef, use } from "react";
 import { Truck, Building2, Cog, HomeIcon, Hammer, ArrowDown } from "lucide-react";
 import Image from "next/image";
 
@@ -175,25 +175,11 @@ export default function Page(props: { params: Promise<{ locale: string }> }) {
 
   const aboutImages = ["trans.jpg", "estate.webp", "car.jpg", "clean.jpg"];
 
-  const [headerHeight, setHeaderHeight] = useState(0);
-
-  useEffect(() => {
-    const measure = () => {
-      const hdr = document.querySelector("header");
-      const h = hdr ? (hdr as HTMLElement).offsetHeight : 0;
-      setHeaderHeight(h);
-    };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, []);
-
   return (
     <div>
       {/* Hero */}
       <section
-        className="relative overflow-hidden flex items-center"
-        style={{ height: `calc(100dvh - ${headerHeight}px)` }}
+        className="relative overflow-hidden min-h-dvh flex items-center"
       >
         <div className="mx-auto max-w-6xl px-4">
           <h1

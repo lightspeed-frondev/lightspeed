@@ -5,5 +5,7 @@ Allow: /
 # Contact
 Contact: contact@frondev.com
 
+Logo and favicon credits to @Aknkut
+
 # Sitemap
 Sitemap: https://lightspeedtransport.ch/sitemap.xml
