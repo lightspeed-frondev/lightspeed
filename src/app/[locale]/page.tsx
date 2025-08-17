@@ -200,7 +200,8 @@ export default function Page(props: { params: Promise<{ locale: string }> }) {
     <div>
       {/* Hero */}
       <section
-        className="relative overflow-hidden min-h-[calc(100dvh-72px)] -mt-[72px] pt-[72px] flex items-center"
+        className="relative overflow-hidden flex items-center"
+        style={{ minHeight: "calc(100dvh - var(--header-h, 64px))" }}
       >
         <div className="mx-auto max-w-6xl px-4">
           <h1

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import MobileDrawer from "@/app/components/MobileDrawer";
 import Image from "next/image";
+import Script from "next/script";
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -100,6 +101,23 @@ export default async function LocaleLayout(
           </div>
         </div>
       </footer>
+
+      {/* Header yüksekliğini CSS değişkenine koyarak hero'nun dinamik hesaplanmasını sağlar */}
+      <Script id="set-header-height" strategy="beforeInteractive">{`
+        (function(){
+          function setHeaderHeight(){
+            try{
+              var hdr = document.querySelector('header');
+              if(!hdr) return;
+              var h = hdr.offsetHeight || 64;
+              document.documentElement.style.setProperty('--header-h', h + 'px');
+            }catch(e){}
+          }
+          setHeaderHeight();
+          window.addEventListener('load', setHeaderHeight);
+          window.addEventListener('resize', setHeaderHeight);
+        })();
+      `}</Script>
     </div>
   );
 }
