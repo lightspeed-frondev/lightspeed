@@ -57,7 +57,7 @@ export default async function LocaleLayout(
 
   return (
     <div className="min-h-dvh flex flex-col">
-      <header className="sticky top-0 inset-x-0 w-full z-50 backdrop-blur supports-[backdrop-filter]:bg-background/70 bg-background/60 border-b border-black/10 dark:border-white/10">
+      <header className="fixed md:sticky top-0 inset-x-0 w-full z-50 backdrop-blur supports-[backdrop-filter]:bg-background/70 bg-background/60 border-b border-black/10 dark:border-white/10">
         <div className="mx-auto max-w-6xl pl-4 pr-2 md:px-4 py-3 grid grid-cols-3 items-center overflow-x-hidden">
           <Link href={`/${locale}`} className="justify-self-start flex items-center">
             <Image
@@ -87,7 +87,7 @@ export default async function LocaleLayout(
         </div>
       </header>
 
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 pt-[var(--header-h,64px)] md:pt-0">{children}</main>
 
       <footer className="border-t border-black/10 dark:border-white/10">
         <div className="mx-auto max-w-6xl px-4 py-8 text-sm flex flex-col md:flex-row items-center md:items-center md:justify-between gap-4">
