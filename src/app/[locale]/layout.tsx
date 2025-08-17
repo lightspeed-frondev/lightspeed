@@ -65,7 +65,7 @@ export default async function LocaleLayout(
               alt="Light-Speed Transport GmbH"
               width={180}
               height={72}
-              className="w-[140px] h-auto md:w-[180px]"
+              className="w-[170 px] h-auto md:w-[180px]"
               priority
             />
             <span className="sr-only">Light-Speed Transport GmbH</span>
