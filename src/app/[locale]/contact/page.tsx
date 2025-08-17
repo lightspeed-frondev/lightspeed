@@ -26,9 +26,17 @@ export default async function ContactPage(props: { params: Promise<{ locale: str
       ? "Reach out — we'll get back quickly with the best plan."
       : "Kontaktieren Sie uns – wir melden uns schnell mit dem besten Angebot.";
   const send = locale === "fr" ? "Envoyer" : locale === "en" ? "Send" : "Senden";
+  const sending = locale === "fr" ? "Envoi…" : locale === "en" ? "Sending…" : "Senden…";
   const name = locale === "fr" ? "Nom" : locale === "en" ? "Name" : "Name";
   const email = locale === "fr" ? "E-mail" : locale === "en" ? "Email" : "E-Mail";
   const message = locale === "fr" ? "Message" : locale === "en" ? "Message" : "Nachricht";
+
+  const recaptchaMissing = locale === "fr" ? "Configuration reCAPTCHA manquante." : locale === "en" ? "reCAPTCHA configuration is missing." : "reCAPTCHA-Konfiguration fehlt.";
+  const fillAll = locale === "fr" ? "Veuillez remplir tous les champs." : locale === "en" ? "Please fill out all fields." : "Bitte füllen Sie alle Felder aus.";
+  const verificationFailed = locale === "fr" ? "Échec de la vérification. Veuillez réessayer." : locale === "en" ? "Verification failed. Please try again." : "Verifizierung fehlgeschlagen. Bitte erneut versuchen.";
+  const suspectedSpam = locale === "fr" ? "Spam suspect détecté. Veuillez réessayer." : locale === "en" ? "Suspected spam detected. Please try again." : "Verdacht auf Spam festgestellt. Bitte erneut versuchen.";
+  const success = locale === "fr" ? "Merci ! Votre message a été reçu." : locale === "en" ? "Thanks! Your message has been received." : "Danke! Ihre Nachricht ist eingegangen.";
+  const genericError = locale === "fr" ? "Une erreur s'est produite. Veuillez réessayer." : locale === "en" ? "An error occurred. Please try again." : "Es ist ein Fehler aufgetreten. Bitte erneut versuchen.";
 
   const infoTitle =
     locale === "fr"
@@ -51,7 +59,7 @@ export default async function ContactPage(props: { params: Promise<{ locale: str
       <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
         <ContactForm
           siteKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? ''}
-          labels={{ send, name, email, message }}
+          labels={{ send, sending, name, email, message, recaptchaMissing, fillAll, verificationFailed, suspectedSpam, success, genericError }}
         />
 
         <aside className="md:col-span-1">
