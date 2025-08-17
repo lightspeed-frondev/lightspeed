@@ -1,10 +1,11 @@
 "use client";
 import { useEffect, useRef } from "react";
+import type { ReactNode } from "react";
 
 type RevealProps = {
-  as?: keyof JSX.IntrinsicElements;
+  as?: keyof HTMLElementTagNameMap;
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export default function Reveal({ as = "div", className = "", children }: RevealProps) {
