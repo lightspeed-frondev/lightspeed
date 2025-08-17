@@ -4,8 +4,8 @@ import MobileDrawer from "@/app/components/MobileDrawer";
 import "../globals.css";
 
 export const metadata: Metadata = {
-  title: "Light-Speed Transport GmbH",
-  description: "Transport, Logistics, Real Estate – Fast and Reliable",
+  title: "Light-Speed Transport GmbH | Transport • Logistics • Real Estate",
+  description: "Fast, safe and reliable solutions in transport, logistics and real estate.",
 };
 
 const locales = ["de", "en", "fr"] as const;

@@ -3,6 +3,8 @@ import { useEffect, useRef, use, useState } from "react";
 import { Truck, Building2, Cog, HomeIcon, Hammer, ArrowDown } from "lucide-react";
 import Image from "next/image";
 
+
+
 type Messages = {
   heroTitle: string;
   heroSubtitle: string;

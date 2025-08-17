@@ -3,6 +3,8 @@ import { Truck, Building2, Cog, HomeIcon, Hammer } from "lucide-react";
 import { use, useEffect, useRef } from "react";
 import Image from "next/image";
 
+
+
 const serviceIcons = [Truck, Building2, Cog, HomeIcon, Hammer];
 
 type Service = { title: string; desc: string; image: string };

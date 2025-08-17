@@ -1,4 +1,18 @@
 import ContactForm from '@/app/components/ContactForm';
+import type { Metadata } from "next";
+
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const params = await props.params;
+  const locale = ["de", "en", "fr"].includes(params.locale) ? params.locale : "de";
+  const title = locale === "fr" ? "Contact | Light-Speed Transport GmbH" : locale === "en" ? "Contact | Light-Speed Transport GmbH" : "Kontakt | Light-Speed Transport GmbH";
+  const description =
+    locale === "fr"
+      ? "Contactez-nous – nous reviendrons rapidement avec la meilleure proposition."
+      : locale === "en"
+      ? "Reach out — we'll get back quickly with the best plan."
+      : "Kontaktieren Sie uns – wir melden uns schnell mit dem besten Angebot.";
+  return { title, description };
+}
 
 export default async function ContactPage(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;
@@ -26,15 +40,11 @@ export default async function ContactPage(props: { params: Promise<{ locale: str
   const phoneLabel = locale === "fr" ? "Téléphone" : locale === "en" ? "Phone" : "Telefon";
   const emailLabelInfo = locale === "fr" ? "E-mail" : locale === "en" ? "Email" : "E-Mail";
   const hoursLabel = locale === "fr" ? "Horaires" : locale === "en" ? "Hours" : "Öffnungszeiten";
-  const companyName = "Lightspeed GmbH";
-  const companyAddress =
-    locale === "fr"
-      ? "Musterstraße 12, 10115 Berlin, Allemagne"
-      : locale === "en"
-      ? "Musterstraße 12, 10115 Berlin, Germany"
-      : "Musterstraße 12, 10115 Berlin, Deutschland";
-  const companyPhone = "+49 30 1234567";
-  const companyEmail = "info@lightspeedgmbh.com";
+  const companyName = "Light-Speed Transport GmbH";
+  const countryLocalized = locale === "fr" ? "Suisse" : locale === "en" ? "Switzerland" : "Schweiz";
+  const companyAddress = `e/o TFZ GmbH, Am Kägenrain 3, 4153 Reinach BL, ${countryLocalized}`;
+  const companyPhone = "+41 61 000 00 00";
+  const companyEmail = "info@light-speed-transport.com";
   const companyHours = locale === "fr" ? "Lun–Ven 9:00–18:00" : locale === "en" ? "Mon–Fri 9:00–18:00" : "Mo–Fr 9:00–18:00";
 
   return (

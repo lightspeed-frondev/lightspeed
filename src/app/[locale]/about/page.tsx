@@ -1,4 +1,19 @@
+import type { Metadata } from "next";
 import Image from "next/image";
+import Reveal from "@/app/components/Reveal";
+
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const params = await props.params;
+  const locale = ["de", "en", "fr"].includes(params.locale) ? params.locale : "de";
+  const title = locale === "fr" ? "À propos | Light-Speed Transport GmbH" : locale === "en" ? "About Us | Light-Speed Transport GmbH" : "Über uns | Light-Speed Transport GmbH";
+  const description =
+    locale === "fr"
+      ? "À propos de Light-Speed Transport GmbH – fiabilité, rapidité et solutions intégrées."
+      : locale === "en"
+      ? "About Light-Speed Transport GmbH – reliability, speed, and integrated solutions."
+      : "Über Light-Speed Transport GmbH – Zuverlässigkeit, Geschwindigkeit und integrierte Lösungen.";
+  return { title, description };
+}
 
 export default async function AboutPage(props: { params: Promise<{ locale: string }> }) {
   const params = await props.params;
@@ -33,10 +48,10 @@ export default async function AboutPage(props: { params: Promise<{ locale: strin
     storyTitle: locale === "fr" ? "Notre histoire" : locale === "en" ? "Our Story" : "Unsere Geschichte",
     storyBody1:
       locale === "fr"
-        ? "Créée à Berlin en 2025, notre société a développé un portefeuille de services intégrés couvrant le transport routier, la logistique et l'immobilier afin de répondre aux besoins de bout en bout: de l'expédition express aux transactions immobilières, en passant par les pièces automobiles, le nettoyage et la construction."
+        ? "Créée en 2025, notre société a développé un portefeuille de services intégrés couvrant le transport routier, la logistique et l'immobilier afin de répondre aux besoins de bout en bout: de l'expédition express aux transactions immobilières, en passant par les pièces automobiles, le nettoyage et la construction."
         : locale === "en"
-        ? "Founded in Berlin in 2025, we built an integrated portfolio across road transport, logistics and real estate to solve end‑to‑end needs — from express shipments to property transactions, vehicle parts, cleaning and construction."
-        : "Seit unserer Gründung 2025 in Berlin haben wir ein integriertes Leistungsportfolio in Straßentransport, Logistik und Immobilien aufgebaut – für durchgängige Lösungen von Expresslieferungen über Immobilientransaktionen bis hin zu Fahrzeugteilen, Reinigung und Bauleistungen.",
+        ? "Founded in 2025, we built an integrated portfolio across road transport, logistics and real estate to solve end‑to‑end needs — from express shipments to property transactions, vehicle parts, cleaning and construction."
+        : "Seit unserer Gründung 2025 haben wir ein integriertes Leistungsportfolio in Straßentransport, Logistik und Immobilien aufgebaut – für durchgängige Lösungen von Expresslieferungen über Immobilientransaktionen bis hin zu Fahrzeugteilen, Reinigung und Bauleistungen.",
     storyBody2:
       locale === "fr"
         ? "Nous combinons un réseau de partenaires fiable, une flotte moderne et une coordination numérique pour garantir des opérations ponctuelles et conformes dans toute l'UE."
@@ -137,8 +152,8 @@ export default async function AboutPage(props: { params: Promise<{ locale: strin
     <div>
       <section className="relative overflow-hidden">
         <div className="mx-auto max-w-6xl px-4 py-20 md:py-28">
-          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">{t.title}</h1>
-          <p className="mt-4 text-lg opacity-80 max-w-3xl">{t.subtitle}</p>
+          <Reveal as="h1" className="text-4xl md:text-5xl font-semibold tracking-tight">{t.title}</Reveal>
+          <Reveal as="p" className="mt-4 text-lg opacity-80 max-w-3xl">{t.subtitle}</Reveal>
         </div>
         <div className="absolute inset-0 -z-10 opacity-30 pointer-events-none" aria-hidden>
           <div className="absolute -top-24 -right-16 h-72 w-72 rounded-full bg-gradient-to-br from-amber-400 to-rose-500 blur-3xl animate-blob" />
@@ -149,12 +164,12 @@ export default async function AboutPage(props: { params: Promise<{ locale: strin
       <section className="border-t border-black/10 dark:border-white/10">
         <div className="mx-auto max-w-6xl px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-start">
           <div>
-            <h2 className="text-2xl md:text-3xl font-semibold">{t.storyTitle}</h2>
-            <p className="mt-3 opacity-80 leading-relaxed">{t.storyBody1}</p>
-            <p className="mt-3 opacity-80 leading-relaxed">{t.storyBody2}</p>
+            <Reveal as="h2" className="text-2xl md:text-3xl font-semibold">{t.storyTitle}</Reveal>
+            <Reveal as="p" className="mt-3 opacity-80 leading-relaxed">{t.storyBody1}</Reveal>
+            <Reveal as="p" className="mt-3 opacity-80 leading-relaxed">{t.storyBody2}</Reveal>
           </div>
           <div className="relative">
-            <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden">
+            <Reveal className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden">
               <Image
                 src="/workingman.avif"
                 alt={locale === "fr" ? "Travailleur" : locale === "en" ? "Working man" : "Arbeiter"}
@@ -163,7 +178,7 @@ export default async function AboutPage(props: { params: Promise<{ locale: strin
                 className="object-cover"
                 priority
               />
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -171,22 +186,22 @@ export default async function AboutPage(props: { params: Promise<{ locale: strin
       {/* Quality, Sustainability, Certifications */}
       <section className="border-t border-black/10 dark:border-white/10">
         <div className="mx-auto max-w-6xl px-4 py-16 md:py-24 grid md:grid-cols-3 gap-6">
-          <div className="rounded-xl border border-black/10 dark:border-white/10 p-5 bg-background/60 backdrop-blur">
+          <Reveal className="rounded-xl border border-black/10 dark:border-white/10 p-5 bg-background/60 backdrop-blur">
             <h3 className="font-medium">{t.qualityTitle}</h3>
             <p className="mt-2 text-sm opacity-90 leading-relaxed">{t.qualityBody}</p>
-          </div>
-          <div className="rounded-xl border border-black/10 dark:border-white/10 p-5 bg-background/60 backdrop-blur">
+          </Reveal>
+          <Reveal className="rounded-xl border border-black/10 dark:border-white/10 p-5 bg-background/60 backdrop-blur">
             <h3 className="font-medium">{t.sustainabilityTitle}</h3>
             <p className="mt-2 text-sm opacity-90 leading-relaxed">{t.sustainabilityBody}</p>
-          </div>
-          <div className="rounded-xl border border-black/10 dark:border-white/10 p-5 bg-background/60 backdrop-blur">
+          </Reveal>
+          <Reveal className="rounded-xl border border-black/10 dark:border-white/10 p-5 bg-background/60 backdrop-blur">
             <h3 className="font-medium">{t.certsTitle}</h3>
             <ul className="mt-2 text-sm opacity-90 space-y-2 list-disc pl-5">
               {t.certs.map((c: string, i: number) => (
                 <li key={i}>{c}</li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </div>
       </section>
     </div>
