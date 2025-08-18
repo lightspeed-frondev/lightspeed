@@ -20,11 +20,11 @@ export default async function ImprintPage(props: { params: Promise<{ locale: str
     companyNumber: "CHE-338.937.112",
     addressCurrentLabel: locale === "fr" ? "Adresse (actuelle)" : locale === "en" ? "Address (current)" : "Adresse (aktuell)",
     addressPrevLabel: locale === "fr" ? "Adresse (précédente)" : locale === "en" ? "Address (previous)" : "Adresse (zuvor)",
-    addressCurrent: "e/o TFZ GmbH, Am Kägenrain 3, 4153 Reinach BL, Switzerland",
+    addressCurrent: "c/o TFZ GmbH, Am Kägenrain 3, 4153 Reinach BL, Switzerland",
     addressPrev1: "Industriestrasse 26, 4622 Egerkingen, Switzerland",
     addressPrev2: "Bächliackerstrasse 4a, 4402 Frenkendorf, Switzerland",
     directorsLabel: locale === "fr" ? "Direction" : locale === "en" ? "Managing Directors" : "Geschäftsführung",
-    directors: ["Büsra Kaya", "Fatih Selvi (Reinach BL)"],
+    directors: ["Büsra Kaya"],
     purposeLabel: locale === "fr" ? "But" : locale === "en" ? "Purpose" : "Zweck",
     purposeValue:
       locale === "fr"

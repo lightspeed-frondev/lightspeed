@@ -48,7 +48,7 @@ export default async function ContactPage(props: { params: Promise<{ locale: str
   const emailLabelInfo = locale === "fr" ? "E-mail" : locale === "en" ? "Email" : "E-Mail";
   const companyName = "Light-Speed Transport GmbH";
   const countryLocalized = locale === "fr" ? "Suisse" : locale === "en" ? "Switzerland" : "Schweiz";
-  const companyAddress = `e/o TFZ GmbH, Am Kägenrain 3, 4153 Reinach BL, ${countryLocalized}`;
+  const companyAddress = `c/o TFZ GmbH, Am Kägenrain 3, 4153 Reinach BL, ${countryLocalized}`;
   const companyEmail = "info@lightspeedtransport.ch";
 
   return (
